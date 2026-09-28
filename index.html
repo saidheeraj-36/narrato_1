@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MarketNarrator AI Suite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script defer src="scripts/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">MarketNarrator <span>AI</span></div>
+    <nav class="topbar__nav" aria-label="Primary">
+      <a href="#mission">Mission</a>
+      <a href="#persona-lab">Persona Lab</a>
+      <a href="#campaign-studio">Campaign Studio</a>
+      <a href="#calendar">Calendar</a>
+      <a href="#insights">Insights</a>
+      <a href="#chatbot">AI Chatbot</a>
+      <a href="#impact">Impact</a>
+    </nav>
+    <button class="topbar__cta" data-scroll="#impact">View Impact Plan</button>
+  </header>
+
+  <main>
+    <section class="hero" id="mission">
+      <div class="hero__content">
+        <h1>MarketNarrator AI</h1>
+        <p>
+          A full-stack GenAI marketing co-pilot built for ambitious teams. Craft personas, ideate campaigns,
+          schedule omnichannel content, simulate performance, and capture real-time insights — all powered by Gemini AI.
+        </p>
+        <div class="hero__cta-group">
+          <button class="primary" data-scroll="#campaign-studio">Launch Studio</button>
+          <button class="secondary" data-scroll="#impact">View Evaluation Readiness</button>
+        </div>
+        <dl class="hero__metrics" aria-label="Key Proof Points">
+          <div>
+            <dt>8+</dt>
+            <dd>Integrated marketing workflows</dd>
+          </div>
+          <div>
+            <dt>GenAI core</dt>
+            <dd>Gemini Flash integration-ready</dd>
+          </div>
+          <div>
+            <dt>Zero-code</dt>
+            <dd>Deploy on Vercel / Netlify in minutes</dd>
+          </div>
+        </dl>
+      </div>
+      <aside class="hero__card" aria-labelledby="mission-heading">
+        <h2 id="mission-heading">Project Mission Canvas</h2>
+        <ul>
+          <li><strong>Audience:</strong> B2B marketing leaders & growth teams.</li>
+          <li><strong>Problem:</strong> Fragmented campaign planning across tools.</li>
+          <li><strong>Solution:</strong> Unified AI workspace turning briefs into execution-ready plans.</li>
+          <li><strong>Outcomes:</strong> Sharper personas, faster go-to-market, measurable impact.</li>
+          <li><strong>Differentiator:</strong> AI-first collaboration with instant benchmarking.</li>
+        </ul>
+        <div class="api-key-input">
+          <label for="apiKey">🔐 Add your Gemini API Key</label>
+          <input id="apiKey" type="password" placeholder="AIza..." aria-describedby="apiKeyHelp" />
+          <p id="apiKeyHelp">Stored securely in your browser to enable AI-powered features.</p>
+          <button id="saveApiKey" class="primary">Save API Key</button>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="persona-lab">
+      <header class="section__header">
+        <h2>Persona Lab</h2>
+        <p>Create high-definition ICPs from a simple brief. Share persona profiles instantly with stakeholders.</p>
+      </header>
+      <div class="card-grid">
+        <form class="card" id="personaForm" aria-label="Persona Generator">
+          <h3>Persona Blueprint</h3>
+          <label>
+            Product / Service
+            <input type="text" name="product" required placeholder="AI-powered content platform" />
+          </label>
+          <label>
+            Target Audience
+            <input type="text" name="audience" required placeholder="Mid-market marketing teams" />
+          </label>
+          <label>
+            Core Value Proposition
+            <textarea name="value" required placeholder="Streamlines omnichannel storytelling with AI"></textarea>
+          </label>
+          <label>
+            Key Challenges (comma separated)
+            <input type="text" name="challenges" placeholder="Content backlog, low engagement, resource crunch" />
+          </label>
+          <button type="submit" class="primary">Generate Persona</button>
+        </form>
+
+        <article class="card persona-output" aria-live="polite">
+          <h3>AI Persona Preview</h3>
+          <div id="personaOutput" class="output">
+            <p>Fill the blueprint to craft a vivid persona complete with motivations, buying triggers, and content hooks.</p>
+          </div>
+          <button class="secondary" id="personaToClipboard" disabled>Copy Persona</button>
+        </article>
+
+        <aside class="card card--tips">
+          <h3>Validation Checklist</h3>
+          <ul>
+            <li>✅ Quant + qual insights blended</li>
+            <li>✅ Messaging pillars aligned to funnel</li>
+            <li>✅ Add real customer quotes post-interviews</li>
+            <li>✅ Attach persona to campaign briefs in Notion / Jira</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="campaign-studio">
+      <header class="section__header">
+        <h2>Campaign Studio</h2>
+        <p>Turn a strategic goal into cross-channel campaign assets in seconds.</p>
+      </header>
+      <div class="card-grid card-grid--two">
+        <form class="card" id="campaignForm">
+          <h3>Campaign Brief</h3>
+          <label>
+            Objective
+            <input type="text" name="objective" required placeholder="Drive signups for webinar series" />
+          </label>
+          <label>
+            Tone of Voice
+            <input type="text" name="tone" required placeholder="Bold, data-backed, inspirational" />
+          </label>
+          <label>
+            Primary Offer
+            <input type="text" name="offer" placeholder="Free 14-day trial" />
+          </label>
+          <label>
+            CTA / Desired Action
+            <input type="text" name="cta" placeholder="Book a strategy session" />
+          </label>
+          <label>
+            Channels (select up to 3)
+            <select name="channels" multiple size="5">
+              <option>Email</option>
+              <option>LinkedIn</option>
+              <option>Instagram</option>
+              <option>Performance Ads</option>
+              <option>Landing Page</option>
+              <option>Podcast</option>
+              <option>Webinar</option>
+            </select>
+          </label>
+          <button type="submit" class="primary">Generate Campaign</button>
+        </form>
+
+        <article class="card" aria-live="polite">
+          <h3>AI Campaign Kit</h3>
+          <div class="tabs" role="tablist">
+            <button class="tab active" data-tab="concept">Concept</button>
+            <button class="tab" data-tab="copy">Channel Copy</button>
+            <button class="tab" data-tab="brief">Creative Brief</button>
+          </div>
+          <div class="output" id="campaignOutput">
+            <div data-tab-content="concept">
+              <p>Describe your campaign goal to see a flagship idea, hero narrative, and KPI recommendations.</p>
+            </div>
+            <div data-tab-content="copy" hidden>
+              <p>Select a channel to populate tactical copy variations with AI.</p>
+            </div>
+            <div data-tab-content="brief" hidden>
+              <p>Creative guardrails and mood boards will appear here for designers.</p>
+            </div>
+          </div>
+          <div class="stack">
+            <button class="secondary" id="campaignToClipboard" disabled>Copy Campaign</button>
+            <button class="ghost" id="campaignToCalendar" disabled>Add Key Beats to Calendar</button>
+          </div>
+        </article>
+      </div>
+      <footer class="section__footer">
+        <p><strong>Tip:</strong> Use "Shift + Enter" inside AI results to add manual notes and instantly sync with Notion via export.</p>
+      </footer>
+    </section>
+
+    <section class="section" id="calendar">
+      <header class="section__header">
+        <h2>Content Calendar</h2>
+        <p>Drag milestones into your sprint calendar. Export to CSV for client sharing.</p>
+      </header>
+      <div class="card-grid card-grid--calendar">
+        <aside class="card">
+          <h3>Upcoming Milestones</h3>
+          <ul id="milestonePool" class="milestone-pool" aria-label="Draggable milestones">
+            <li draggable="true">Thought leadership blog - Week 1</li>
+            <li draggable="true">LinkedIn carousel - Week 1</li>
+            <li draggable="true">Webinar reminder email - Week 2</li>
+            <li draggable="true">Customer case study - Week 3</li>
+          </ul>
+          <button class="ghost" id="resetMilestones">Reset Milestones</button>
+        </aside>
+        <div class="calendar-wrapper card">
+          <div class="calendar-header">
+            <h3>Sprint Calendar</h3>
+            <button class="secondary" id="exportCalendar">Export CSV</button>
+          </div>
+          <div class="calendar-grid" role="grid" aria-label="Calendar">
+            <div class="calendar-column" data-week="1" aria-label="Week 1"><h4>Week 1</h4></div>
+            <div class="calendar-column" data-week="2" aria-label="Week 2"><h4>Week 2</h4></div>
+            <div class="calendar-column" data-week="3" aria-label="Week 3"><h4>Week 3</h4></div>
+            <div class="calendar-column" data-week="4" aria-label="Week 4"><h4>Week 4</h4></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="insights">
+      <header class="section__header">
+        <h2>Performance Simulator &amp; Insights</h2>
+        <p>Forecast outcomes, monitor sentiment, and benchmark against real-time industry data.</p>
+      </header>
+      <div class="card-grid card-grid--two">
+        <article class="card">
+          <h3>Performance Simulator</h3>
+          <form id="performanceForm">
+            <label> Target Audience Size <input type="number" name="audience" min="100" value="1000" /> </label>
+            <label> Expected CTR (%) <input type="number" name="ctr" step="0.1" value="3.5" /> </label>
+            <label> Conversion Rate (%) <input type="number" name="conversion" step="0.1" value="5" /> </label>
+            <label> Avg. Deal Size ($) <input type="number" name="deal" step="100" value="1500" /> </label>
+            <button type="submit" class="primary">Simulate</button>
+          </form>
+          <canvas id="performanceChart" aria-label="Performance forecast chart"></canvas>
+        </article>
+
+        <article class="card insights">
+          <h3>Voice of Market</h3>
+          <form id="listeningForm">
+            <label>
+              Keyword / Topic
+              <input type="text" name="keyword" placeholder="AI marketing automation" required />
+            </label>
+            <label>
+              Channel
+              <select name="channel">
+                <option>LinkedIn</option>
+                <option>Reddit</option>
+                <option>G2 Reviews</option>
+                <option>Twitter/X</option>
+              </select>
+            </label>
+            <button type="submit" class="secondary">Generate Listening Brief</button>
+          </form>
+          <div id="listeningOutput" class="output">
+            <p>Discover trending conversations, sentiment cues, and influencer handles to engage.</p>
+          </div>
+          <button class="ghost" id="listeningToClipboard" disabled>Copy Listening Brief</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="chatbot">
+      <header class="section__header">
+        <h2>Gemini Marketing Strategist</h2>
+        <p>A conversational co-pilot trained on your brief. Perfect for live workshops or stakeholder reviews.</p>
+      </header>
+      <div class="card chatbot">
+        <div class="chatbot__sidebar">
+          <h3>Conversation Starters</h3>
+          <ul>
+            <li data-chat-prompt="Design a product launch plan for fintech SMBs." tabindex="0">Product launch playbook</li>
+            <li data-chat-prompt="Summarize competitor positioning in AI marketing tools." tabindex="0">Competitor snapshot</li>
+            <li data-chat-prompt="Create a nurture email sequence for freemium to paid upgrades." tabindex="0">Nurture flow</li>
+            <li data-chat-prompt="Suggest experiments to improve landing page conversion." tabindex="0">Experiment backlog</li>
+          </ul>
+          <div class="chatbot__status" id="chatbotStatus" aria-live="polite">Waiting for your prompt.</div>
+        </div>
+        <div class="chatbot__conversation" aria-live="polite">
+          <div id="chatWindow" class="chat-window">
+            <div class="chat-message chat-message--ai">Welcome! Ask me anything about campaigns, analytics, or storytelling.</div>
+          </div>
+          <form id="chatForm" class="chat-form">
+            <label class="visually-hidden" for="chatInput">Ask the marketing strategist</label>
+            <textarea id="chatInput" placeholder="Ask the strategist..." required></textarea>
+            <button type="submit" class="primary">Send</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="impact">
+      <header class="section__header">
+        <h2>Impact &amp; Validation Hub</h2>
+        <p>Track adoption metrics, gather testimonials, and prepare your submission dossier.</p>
+      </header>
+      <div class="card-grid card-grid--three">
+        <article class="card">
+          <h3>Launch Checklist</h3>
+          <ul class="checklist" id="launchChecklist">
+            <li><input type="checkbox" id="checkLanding" /><label for="checkLanding">Publish landing page &amp; share on LinkedIn</label></li>
+            <li><input type="checkbox" id="checkBeta" /><label for="checkBeta">Onboard 10+ pilot users (record testimonials)</label></li>
+            <li><input type="checkbox" id="checkVideo" /><label for="checkVideo">Record 3-min demo walkthrough</label></li>
+            <li><input type="checkbox" id="checkPRD" /><label for="checkPRD">Finalize PRD with ROI projections</label></li>
+            <li><input type="checkbox" id="checkFeedback" /><label for="checkFeedback">Synthesize user feedback in Notion</label></li>
+          </ul>
+        </article>
+        <article class="card" id="metricsCard">
+          <h3>Engagement Metrics</h3>
+          <form id="metricsForm">
+            <label> Landing Page Visits <input type="number" name="visits" value="120" /> </label>
+            <label> Signups <input type="number" name="signups" value="18" /> </label>
+            <label> NPS Score <input type="number" name="nps" value="48" /> </label>
+            <button type="submit" class="secondary">Update Chart</button>
+          </form>
+          <canvas id="metricsChart" aria-label="Engagement metrics chart"></canvas>
+        </article>
+        <article class="card feedback">
+          <h3>User Feedback Vault</h3>
+          <form id="feedbackForm">
+            <label> Name <input type="text" name="name" placeholder="Ananya, Growth Lead" required /> </label>
+            <label> Feedback <textarea name="feedback" placeholder="This saved us 5 hours weekly!" required></textarea> </label>
+            <label> Impact Metric <input type="text" name="impact" placeholder="Reduced CAC by 18%" /></label>
+            <button type="submit" class="primary">Add Testimonial</button>
+          </form>
+          <ul id="feedbackList" class="feedback-list" aria-live="polite"></ul>
+        </article>
+      </div>
+      <footer class="section__footer">
+        <p>Export testimonials, charts, and checklist to include in your final pitch deck and PRD.</p>
+      </footer>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <strong>MarketNarrator AI</strong>
+      <p>Built by an IIM Ahmedabad MBA candidate to demonstrate GenAI impact in marketing transformation.</p>
+    </div>
+    <div>
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#">Product Requirement Doc Template</a></li>
+        <li><a href="#">Demo Video Script</a></li>
+        <li><a href="#">User Outreach Email</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Need Support?</h4>
+      <p>Email: <a href="mailto:marketnarrator.ai@gmail.com">marketnarrator.ai@gmail.com</a></p>
+      <p>Join the beta Slack channel for real-time collaboration.</p>
+    </div>
+  </footer>
+</body>
+</html>
